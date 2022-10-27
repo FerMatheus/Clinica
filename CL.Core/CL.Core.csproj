@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="OutputModel\" />
+    <Compile Remove="OutputModel\**" />
+    <EmbeddedResource Remove="OutputModel\**" />
+    <None Remove="OutputModel\**" />
   </ItemGroup>
 
 </Project>

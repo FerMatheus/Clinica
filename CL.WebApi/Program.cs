@@ -3,13 +3,19 @@ using CL.Data.Repository;
 using CL.Manager.Implementation;
 using CL.Manager.Interfaces;
 using CL.Manager.Mapping;
+using CL.Manager.Validation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddFluentValidation( op =>
+{
+    op.RegisterValidatorsFromAssemblyContaining<NovoClienteValidator>();
+    op.RegisterValidatorsFromAssemblyContaining<AlteraClienteValidator>();
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 
