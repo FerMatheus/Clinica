@@ -1,10 +1,11 @@
 ﻿using CL.Core.Domain;
 using CL.Data.Context;
+using CL.Manager.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CL.Data.Repository;
 
-public class ClienteRepository
+public class ClienteRepository : IClienteRepository
 {
 	private readonly ClinicaContext context;
 
