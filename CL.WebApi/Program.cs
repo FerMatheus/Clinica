@@ -11,8 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
 
 builder.Services.AddAutoMapper(typeof(NovoClienteMappingProfile),typeof(AlteraClienteMappingProfile));
 
@@ -25,6 +24,8 @@ builder.Services.AddDbContext<ClinicaContext>(op =>
 {
     op.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 

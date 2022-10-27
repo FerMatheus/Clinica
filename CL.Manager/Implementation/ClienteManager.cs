@@ -8,9 +8,9 @@ namespace CL.Manager.Implementation;
 public class ClienteManager : IClienteManager
 {
     private readonly IClienteRepository clienteRepository;
-    private readonly Mapper mapper;
+    private readonly IMapper mapper;
 
-    public ClienteManager(IClienteRepository clienteRepository, Mapper mapper)
+    public ClienteManager(IClienteRepository clienteRepository, IMapper mapper)
     {
         this.clienteRepository = clienteRepository;
         this.mapper = mapper;
