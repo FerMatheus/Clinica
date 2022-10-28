@@ -23,23 +23,21 @@ builder.Services.AddAutoMapperConfiguration();
 builder.Services.AddDependencyinjectionConfiguration();
 
 var connectionString = builder.Configuration.GetConnectionString("MatheusConnection");
+builder.Services.AddDataBaseConfiguration(connectionString);
 
-builder.Services.AddDbContext<ClinicaContext>(op =>
-{
-    op.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-});
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerConfiguration();
 
 var app = builder.Build();
 
-
-// Configure the HTTP request pipeline.
+// Atualizar a base de dados com nossos Migrations
+app.UseDatabaseConfiguration();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 app.UseSwaggerConfiguration();
 
+// Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
