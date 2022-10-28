@@ -31,6 +31,7 @@ public class ClienteRepository : IClienteRepository
 	{
 		var cliente = await context.Clientes.FindAsync(clienteAlterado.Id);
 		if (cliente is null) return null;
+		clienteAlterado.Criacao = cliente.Criacao;
 		context.Entry(cliente).CurrentValues.SetValues(clienteAlterado);
 		await context.SaveChangesAsync();
 		return cliente;

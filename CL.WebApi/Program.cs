@@ -24,7 +24,7 @@ builder.Services.AddAutoMapper(typeof(NovoClienteMappingProfile),typeof(AlteraCl
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IClienteManager, ClienteManager>();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("MatheusConnection");
 
 builder.Services.AddDbContext<ClinicaContext>(op =>
 {
