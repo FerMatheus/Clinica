@@ -28,6 +28,8 @@ public static class SwaggerConfig
             var xmlname = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlname);
             op.IncludeXmlComments(xmlPath);
+            xmlPath = Path.Combine(AppContext.BaseDirectory, "CL.Core.xml");
+            op.IncludeXmlComments(xmlPath);
         });
     }
     public static void UseSwaggerConfiguration(this WebApplication app) 

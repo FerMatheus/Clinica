@@ -22,6 +22,10 @@ namespace CL.WebApi.Controllers
         /// Retorna todos os clientes cadastrados na base de dados
         /// </summary>
         [HttpGet]
+        [ProducesResponseType(typeof(Cliente), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+
         public async Task<ActionResult> Get()
         {
             var clientes = await clienteManager.GetClientesAsync();
@@ -35,6 +39,9 @@ namespace CL.WebApi.Controllers
         /// </summary>
         /// <param name="id" example="1">Id do cliente</param>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(Cliente), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Get(int id)
         {
             var cliente = await clienteManager.GetClienteAsync(id);
@@ -48,6 +55,8 @@ namespace CL.WebApi.Controllers
         /// </summary>
         /// <param name="novoCliente"></param>
         [HttpPost]
+        [ProducesResponseType(typeof(Cliente), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Post(NovoCliente novoCliente)
         {
             var cliente = await clienteManager.InsertClienteAsync(novoCliente);
@@ -59,7 +68,10 @@ namespace CL.WebApi.Controllers
         /// Realiza a atualização dos dados de um cliente já existente
         /// </summary>
         /// <param name="clienteAlterado"></param>
-        [HttpPut()]
+        [HttpPut]
+        [ProducesResponseType(typeof(Cliente), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Put(AlteraCliente clienteAlterado)
         {
             var cliente = await clienteManager.UpdateClienteAsync(clienteAlterado);
@@ -71,9 +83,11 @@ namespace CL.WebApi.Controllers
         /// <summary>
         /// Realiza a remoção do cliente, informado pelo id, da base de dados
         /// </summary>
-        /// <param name="id" exaple="1">Id do cliente</param>
+        /// <param name="id" example="1">Id do cliente</param>
         /// <remarks>Após excluido, todos os dados serão perdidos permanentemente</remarks>
         [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(Cliente), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Delete(int id)
         {
             var cliente = await clienteManager.DeleteClienteAsync(id);

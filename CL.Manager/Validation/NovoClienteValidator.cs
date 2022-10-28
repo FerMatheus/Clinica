@@ -16,7 +16,7 @@ public class NovoClienteValidator : AbstractValidator<NovoCliente>
             .WithMessage("Seu nascimento deve ser inferior à data de hoje, e você não pode ter mais que 120 anos.");
         RuleFor(novoCliente => novoCliente.Sexo).NotNull().NotEmpty()
             .Must(Testa)
-            .WithMessage("O sexo deve ser M ou F");
+            .WithMessage("O sexo deve ser M, F ou N");
         RuleFor(novoCliente => novoCliente.Telefone).NotNull().NotEmpty()
             .Matches("[2-9]{2}-([0-9]{8}|[0-9]{9})")
             .WithMessage("O telefone deve obdecer  o formato XX-XXXXXXXX ou XX-XXXXXXXXX");
@@ -27,6 +27,6 @@ public class NovoClienteValidator : AbstractValidator<NovoCliente>
 
     private bool Testa(char sexo)
     {
-        return sexo == 'M' || sexo == 'F';
+        return sexo == 'M' || sexo == 'F' || sexo == 'N';
     }
 }
