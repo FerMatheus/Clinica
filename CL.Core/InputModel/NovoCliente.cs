@@ -22,7 +22,7 @@ public class NovoCliente
     /// <summary>
     /// Número de contato do cliente
     /// </summary>
-    /// <example>85-992346698</example>
+    /// 
     public string Telefone { get; set; }
     /// <summary>
     /// Documento que será vinculado ao usuário

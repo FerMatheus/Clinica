@@ -37,7 +37,7 @@
             <summary>
             Número de contato do cliente
             </summary>
-            <example>85-992346698</example>
+            
         </member>
         <member name="P:CL.Core.InputModel.NovoCliente.Documento">
             <summary>
