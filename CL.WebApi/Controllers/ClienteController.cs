@@ -18,6 +18,9 @@ namespace CL.WebApi.Controllers
             this.clienteManager = clienteManager;
         }
         // GET: api/<ClienteController>
+        /// <summary>
+        /// Retorna todos os clientes cadastrados na base de dados
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult> Get()
         {
@@ -27,6 +30,10 @@ namespace CL.WebApi.Controllers
         }
 
         // GET api/<ClienteController>/5
+        /// <summary>
+        /// Retorna o cliente identificado pelo id passado.
+        /// </summary>
+        /// <param name="id" example="1">Id do cliente</param>
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
         {
@@ -36,6 +43,10 @@ namespace CL.WebApi.Controllers
         }
 
         // POST api/<ClienteController>
+        /// <summary>
+        /// Realiza o cadastro de um novo cliente
+        /// </summary>
+        /// <param name="novoCliente"></param>
         [HttpPost]
         public async Task<ActionResult> Post(NovoCliente novoCliente)
         {
@@ -44,6 +55,10 @@ namespace CL.WebApi.Controllers
         }
 
         // PUT api/<ClienteController>/5
+        /// <summary>
+        /// Realiza a atualização dos dados de um cliente já existente
+        /// </summary>
+        /// <param name="clienteAlterado"></param>
         [HttpPut()]
         public async Task<ActionResult> Put(AlteraCliente clienteAlterado)
         {
@@ -53,6 +68,11 @@ namespace CL.WebApi.Controllers
         }
 
         // DELETE api/<ClienteController>/5
+        /// <summary>
+        /// Realiza a remoção do cliente, informado pelo id, da base de dados
+        /// </summary>
+        /// <param name="id" exaple="1">Id do cliente</param>
+        /// <remarks>Após excluido, todos os dados serão perdidos permanentemente</remarks>
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
