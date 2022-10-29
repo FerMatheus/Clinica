@@ -4,46 +4,46 @@
         <name>CL.Core</name>
     </assembly>
     <members>
-        <member name="P:CL.Core.InputModel.AlteraCliente.Id">
-            <summary>
-            Id do cliente que se deseja alterar os dados
-            </summary>
-            <example>1</example>
-        </member>
-        <member name="T:CL.Core.InputModel.NovoCliente">
+        <member name="T:CL.Core.ModelViews.Cliente.NovoCliente">
             <summary>
             Objetor para fazer a coleta seletiva dos dados do cliente.
             </summary>
         </member>
-        <member name="P:CL.Core.InputModel.NovoCliente.Nome">
+        <member name="P:CL.Core.ModelViews.Cliente.NovoCliente.Nome">
             <summary>
             Nome do cliente
             </summary>
             <example>Matheus Fernandes</example>
         </member>
-        <member name="P:CL.Core.InputModel.NovoCliente.Nascimento">
+        <member name="P:CL.Core.ModelViews.Cliente.NovoCliente.Nascimento">
             <summary>
             Data de nascimento do usuário
             </summary>
             <example>1998-03-25</example>
         </member>
-        <member name="P:CL.Core.InputModel.NovoCliente.Sexo">
+        <member name="P:CL.Core.ModelViews.Cliente.NovoCliente.Sexo">
             <summary>
             Sexo do cliente
             </summary>
             <example>M, F, ou N</example>
         </member>
-        <member name="P:CL.Core.InputModel.NovoCliente.Telefone">
+        <member name="P:CL.Core.ModelViews.Cliente.NovoCliente.Telefone">
             <summary>
             Número de contato do cliente
             </summary>
             <example>85-992346698</example>
         </member>
-        <member name="P:CL.Core.InputModel.NovoCliente.Documento">
+        <member name="P:CL.Core.ModelViews.Cliente.NovoCliente.Documento">
             <summary>
             Documento que será vinculado ao usuário
             </summary>
             <example>Pode ser RG, CPF ou CNH</example>
+        </member>
+        <member name="P:AlteraCliente.Id">
+            <summary>
+            Id do cliente que se deseja alterar os dados
+            </summary>
+            <example>1</example>
         </member>
     </members>
 </doc>

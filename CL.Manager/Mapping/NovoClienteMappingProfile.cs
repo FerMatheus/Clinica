@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CL.Core.Domain;
-using CL.Core.InputModel;
+using CL.Core.ModelViews.Cliente;
 
 namespace CL.Manager.Mapping;
 

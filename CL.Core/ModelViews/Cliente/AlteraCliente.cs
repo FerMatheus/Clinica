@@ -1,5 +1,4 @@
-﻿namespace CL.Core.InputModel;
-
+﻿using CL.Core.ModelViews.Cliente;
 public class AlteraCliente : NovoCliente
 {
     /// <summary>

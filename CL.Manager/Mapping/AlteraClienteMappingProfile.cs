@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CL.Core.Domain;
-using CL.Core.InputModel;
 using CL.Manager.Validation;
 
 namespace CL.Manager.Mapping;

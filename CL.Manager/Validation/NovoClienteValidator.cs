@@ -1,4 +1,4 @@
-﻿using CL.Core.InputModel;
+﻿using CL.Core.ModelViews.Cliente;
 using FluentValidation;
 
 namespace CL.Manager.Validation;

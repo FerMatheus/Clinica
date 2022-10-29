@@ -1,4 +1,4 @@
-﻿namespace CL.Core.InputModel;
+﻿namespace CL.Core.ModelViews.Cliente;
 /// <summary>
 /// Objetor para fazer a coleta seletiva dos dados do cliente.
 /// </summary>
