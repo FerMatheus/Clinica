@@ -25,4 +25,42 @@ public class MedicoRepository
 			.AsNoTracking()
 			.SingleOrDefaultAsync(c => c.Id == id);
 	}
+	public async Task<Medico> InsertMedicoAsync(Medico medico)
+	{
+		await context.Medicos.AddAsync(medico);
+		await InsertMedicoEspecialidade(medico);
+		await context.SaveChangesAsync();
+		return medico;
+	}
+	private async Task<Medico> InsertMedicoEspecialidade(Medico medico)
+	{
+		foreach (var especialidade in medico.Especialidades)
+		{
+			var especialidadeConsultada = await context.Especialidades.AsNoTracking().FirstAsync(e => e.Id == especialidade.Id);
+			context.Entry(especialidade).CurrentValues.SetValues(especialidadeConsultada);
+		}
+		return medico;
+	}
+	
+	public async Task<Medico> UpdateMedicoAsync(Medico medico)
+	{
+		var medicoConsultado = await context.Medicos.Include(e => e.Especialidades).SingleOrDefaultAsync(m => m.Id == medico.Id);
+
+		if (medicoConsultado is null)
+		{
+			return null;
+		}
+		context.Entry(medicoConsultado).CurrentValues.SetValues(medico);
+		medicoConsultado.Especialidades.Clear();
+		await UpdateMedicoEspecialidades(medico, medicoConsultado);
+	}
+
+	private async Task UpdateMedicoEspecialidades(Medico medico, Medico medicoConsultado)
+	{
+		foreach (var especialidade in medico.Especialidades)
+		{
+			var especialidadeConsultada = await context.Especialidades.FindAsync(especialidade.Id);
+			medicoConsultado.Especialidades.Add(especialidadeConsultada);
+		}
+	}
 }
