@@ -51,16 +51,24 @@ public class MedicoRepository
 			return null;
 		}
 		context.Entry(medicoConsultado).CurrentValues.SetValues(medico);
-		medicoConsultado.Especialidades.Clear();
 		await UpdateMedicoEspecialidades(medico, medicoConsultado);
+		await context.SaveChangesAsync();
+		return medicoConsultado;
 	}
 
 	private async Task UpdateMedicoEspecialidades(Medico medico, Medico medicoConsultado)
 	{
-		foreach (var especialidade in medico.Especialidades)
+        medicoConsultado.Especialidades.Clear();
+        foreach (var especialidade in medico.Especialidades)
 		{
 			var especialidadeConsultada = await context.Especialidades.FindAsync(especialidade.Id);
 			medicoConsultado.Especialidades.Add(especialidadeConsultada);
 		}
+	}
+	public async Task DeleteMedicoAsync(int id)
+	{
+		var medicoConsultado = await context.Medicos.FindAsync(id);
+		context.Medicos.Remove(medicoConsultado);
+		await context.SaveChangesAsync();
 	}
 }
