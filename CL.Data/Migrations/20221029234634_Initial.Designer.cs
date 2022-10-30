@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CL.Data.Migrations
 {
     [DbContext(typeof(ClinicaContext))]
-    [Migration("20221029002358_medico-especialidades")]
-    partial class medicoespecialidades
+    [Migration("20221029234634_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

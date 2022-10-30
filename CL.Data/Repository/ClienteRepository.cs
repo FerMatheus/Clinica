@@ -19,7 +19,7 @@ public class ClienteRepository : IClienteRepository
 	}
 	public async Task<Cliente> GetClienteAsync(int id)
 	{
-		return await context.Clientes.FindAsync(id);
+		return await context.Clientes.AsNoTracking().SingleOrDefaultAsync(c => c.Id == id);
 	}
 	public async Task<Cliente> InsertClienteAsync(Cliente cliente)
 	{
@@ -29,7 +29,7 @@ public class ClienteRepository : IClienteRepository
 	}
 	public async Task<Cliente> UpdateClienteAsync(Cliente clienteAlterado)
 	{
-		var cliente = await context.Clientes.FindAsync(clienteAlterado.Id);
+		var cliente = await context.Clientes.AsNoTracking().SingleAsync(c => c.Id == clienteAlterado.Id);
 		if (cliente is null) return null;
 		clienteAlterado.Criacao = cliente.Criacao;
 		context.Entry(cliente).CurrentValues.SetValues(clienteAlterado);
@@ -38,7 +38,7 @@ public class ClienteRepository : IClienteRepository
 	}
 	public async Task<Cliente> DeleteClienteAsync(int id)
 	{
-		var cliente = await context.Clientes.FindAsync(id);
+		var cliente = await context.Clientes.AsNoTracking().SingleOrDefaultAsync(c => c.Id == id);
 		if (cliente is null) return null;
 		context.Clientes.Remove(cliente);
 		await context.SaveChangesAsync();

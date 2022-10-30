@@ -12,6 +12,7 @@ public static class FluentValidationConfig
         {
             op.RegisterValidatorsFromAssemblyContaining<NovoClienteValidator>();
             op.RegisterValidatorsFromAssemblyContaining<AlteraClienteValidator>();
+            op.RegisterValidatorsFromAssemblyContaining<NovoMedicoValidator>();
         });
     }
 }

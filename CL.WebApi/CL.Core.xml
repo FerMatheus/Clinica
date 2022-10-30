@@ -39,6 +39,39 @@
             </summary>
             <example>Pode ser RG, CPF ou CNH</example>
         </member>
+        <member name="T:CL.Core.ModelViews.Medico.AlteraMedico">
+            <summary>
+            Objeto que servirá para atualizar os dados do médico
+            </summary>
+        </member>
+        <member name="P:CL.Core.ModelViews.Medico.AlteraMedico.Id">
+            <summary>
+            Id pertencente ao médico se deseja alterar.
+            </summary>
+            <example>1</example>
+        </member>
+        <member name="T:CL.Core.ModelViews.Medico.NovoMedico">
+            <summary>
+            Objeto que servirá para colher dados do médico a ser cadastrado
+            </summary>
+        </member>
+        <member name="P:CL.Core.ModelViews.Medico.NovoMedico.Nome">
+            <summary>
+            Nome do médico
+            </summary>
+            <example>Roberto Celestino</example>
+        </member>
+        <member name="P:CL.Core.ModelViews.Medico.NovoMedico.CRM">
+            <summary>
+            ´Número do CRM do médico
+            </summary>
+            <example>123</example>
+        </member>
+        <member name="P:CL.Core.ModelViews.Medico.NovoMedico.Especialidades">
+            <summary>
+            Os ids das especialidades que o médico possue.
+            </summary>
+        </member>
         <member name="P:AlteraCliente.Id">
             <summary>
             Id do cliente que se deseja alterar os dados

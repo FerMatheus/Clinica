@@ -7,12 +7,18 @@ using CL.Manager.Validation;
 using CL.WebApi.Configurations;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(op =>
+{
+    op.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
+
+
 
 // Valida��o 
 builder.Services.AddFluentValidationConfiguration();

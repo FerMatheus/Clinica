@@ -1,10 +1,11 @@
 ﻿using CL.Core.Domain;
 using CL.Data.Context;
+using CL.Manager.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CL.Data.Repository;
 
-public class MedicoRepository
+public class MedicoRepository : IMedicoRepository
 {
 	private readonly ClinicaContext context;
 
@@ -15,30 +16,28 @@ public class MedicoRepository
 	public async Task<IEnumerable<Medico>> GetMedicosAsync()
 	{
 		return await context.Medicos
+			 .AsNoTracking()
 			 .Include(e => e.Especialidades)
 			 .AsNoTracking()
 			 .ToListAsync();
 	}
 	public async Task<Medico> GetMedicoAsync(int id)
 	{
-		return await context.Medicos.Include(e => e.Especialidades)
+		return await context.Medicos
+			.AsNoTracking()
+			.Include(e => e.Especialidades)
 			.AsNoTracking()
 			.SingleOrDefaultAsync(c => c.Id == id);
 	}
 	public async Task<Medico> InsertMedicoAsync(Medico medico)
 	{
-		await context.Medicos.AddAsync(medico);
-		await InsertMedicoEspecialidade(medico);
-		await context.SaveChangesAsync();
-		return medico;
-	}
-	private async Task<Medico> InsertMedicoEspecialidade(Medico medico)
-	{
+		await context.Medicos.AddRangeAsync(medico);
 		foreach (var especialidade in medico.Especialidades)
 		{
-			var especialidadeConsultada = await context.Especialidades.AsNoTracking().FirstAsync(e => e.Id == especialidade.Id);
+			var especialidadeConsultada = await context.Especialidades.AsNoTrackingWithIdentityResolution().SingleAsync(m => m.Id == especialidade.Id);
 			context.Entry(especialidade).CurrentValues.SetValues(especialidadeConsultada);
 		}
+		await context.BulkSaveChangesAsync();
 		return medico;
 	}
 	
