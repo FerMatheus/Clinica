@@ -1,11 +1,4 @@
-using CL.Data.Context;
-using CL.Data.Repository;
-using CL.Manager.Implementation;
-using CL.Manager.Interfaces;
-using CL.Manager.Mapping;
-using CL.Manager.Validation;
 using CL.WebApi.Configurations;
-using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -28,7 +21,7 @@ builder.Services.AddAutoMapperConfiguration();
 // Inje��o de depend�ncia
 builder.Services.AddDependencyinjectionConfiguration();
 
-var connectionString = builder.Configuration.GetConnectionString("MatheusConnection");
+var connectionString = builder.Configuration.GetConnectionString("GesadConnection");
 builder.Services.AddDataBaseConfiguration(connectionString);
 
 builder.Services.AddEndpointsApiExplorer();
