@@ -13,6 +13,10 @@ public class MedicoRepository : IMedicoRepository
 	{
 		this.context = context;
 	}
+	private async Task<IEnumerable<Especialidade>> GetEspecialidadesAsync()
+	{
+		return await context.Especialidades.AsNoTracking().ToListAsync();
+	}
 	public async Task<IEnumerable<Medico>> GetMedicosAsync()
 	{
 		return await context.Medicos
@@ -31,16 +35,28 @@ public class MedicoRepository : IMedicoRepository
 	}
 	public async Task<Medico> InsertMedicoAsync(Medico medico)
 	{
-		await context.Medicos.AddRangeAsync(medico);
-		foreach (var especialidade in medico.Especialidades)
-		{
-			var especialidadeConsultada = await context.Especialidades.AsNoTrackingWithIdentityResolution().SingleAsync(m => m.Id == especialidade.Id);
-			context.Entry(especialidade).CurrentValues.SetValues(especialidadeConsultada);
-		}
-		await context.BulkSaveChangesAsync();
+		await AtribuiEspecialidades(medico);
+		await context.Medicos.AddAsync(medico);
+		await context.SaveChangesAsync();
 		return medico;
 	}
-	
+
+	private async Task AtribuiEspecialidades(Medico medico)
+	{
+		List<int> idsEspecialidade = new List<int>();
+		foreach (var especialidade in medico.Especialidades)
+		{
+			idsEspecialidade.Add(especialidade.Id);
+		}
+		medico.Especialidades.Clear();
+		foreach (var id in idsEspecialidade)
+		{
+			var especialidadeDb = await context.Especialidades.FindAsync(id);
+			medico.Especialidades.Add(especialidadeDb);
+		}
+	}
+
+
 	public async Task<Medico> UpdateMedicoAsync(Medico medico)
 	{
 		var medicoConsultado = await context.Medicos.Include(e => e.Especialidades).SingleOrDefaultAsync(m => m.Id == medico.Id);

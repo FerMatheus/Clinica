@@ -21,7 +21,7 @@ builder.Services.AddAutoMapperConfiguration();
 // Inje��o de depend�ncia
 builder.Services.AddDependencyinjectionConfiguration();
 
-var connectionString = builder.Configuration.GetConnectionString("GesadConnection");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDataBaseConfiguration(connectionString);
 
 builder.Services.AddEndpointsApiExplorer();
