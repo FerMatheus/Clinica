@@ -1,5 +1,4 @@
 using CL.WebApi.Configurations;
-using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,15 +12,15 @@ builder.Services.AddControllers().AddJsonOptions(op =>
 
 
 
-// Valida��o 
+// Validação 
 builder.Services.AddFluentValidationConfiguration();
 
 builder.Services.AddAutoMapperConfiguration();
 
-// Inje��o de depend�ncia
+// Injeção de dependência
 builder.Services.AddDependencyinjectionConfiguration();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("MatheusConnection");
 builder.Services.AddDataBaseConfiguration(connectionString);
 
 builder.Services.AddEndpointsApiExplorer();

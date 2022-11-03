@@ -13,10 +13,6 @@ public class MedicoRepository : IMedicoRepository
 	{
 		this.context = context;
 	}
-	private async Task<IEnumerable<Especialidade>> GetEspecialidadesAsync()
-	{
-		return await context.Especialidades.AsNoTracking().ToListAsync();
-	}
 	public async Task<IEnumerable<Medico>> GetMedicosAsync()
 	{
 		return await context.Medicos
