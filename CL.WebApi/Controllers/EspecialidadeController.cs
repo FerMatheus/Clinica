@@ -16,7 +16,9 @@ namespace CL.WebApi.Controllers
         {
             this.especialidadeManager = especialidadeManager;
         }
-
+        /// <summary>
+        /// Retorna uma lista com todas as especialidades
+        /// </summary>
         // GET: api/<EspecialidadeController>
         [HttpGet]
         [ProducesResponseType(typeof(EspecialidadeView), StatusCodes.Status200OK)]
@@ -25,7 +27,10 @@ namespace CL.WebApi.Controllers
         {
             return Ok(await especialidadeManager.GetEspecialidadesAsync());
         }
-
+        /// <summary>
+        /// Retorna uma especialidade identificada pelo id
+        /// </summary>
+        /// <param name="id" example="1">Id da especialidade</param>
         // GET api/<EspecialidadeController>/5
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(EspecialidadeView), StatusCodes.Status200OK)]
@@ -37,6 +42,9 @@ namespace CL.WebApi.Controllers
             if(especialidade is null) return NotFound();
             return Ok(especialidade);
         }
+        /// <summary>
+        /// Retorna uma lista com todas as especialidades, com seus médicos
+        /// </summary>
         [HttpGet("medico")]
         [ProducesResponseType(typeof(EspecialidadeView), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -44,7 +52,10 @@ namespace CL.WebApi.Controllers
         {
             return Ok(await especialidadeManager.GetEspecialidadesMedicosAsync());
         }
-
+        /// <summary>
+        /// Retorna uma especialidade identificada pelo id, com seus médicos
+        /// </summary>
+        /// <param name="id" example="1">Id da especialidade</param>
         // GET api/<EspecialidadeController>/5
         [HttpGet("medico/{id}")]
         [ProducesResponseType(typeof(EspecialidadeView), StatusCodes.Status200OK)]
@@ -56,7 +67,10 @@ namespace CL.WebApi.Controllers
             if (especialidade is null) return NotFound();
             return Ok(especialidade);
         }
-
+        /// <summary>
+        /// Cadastro de uma especialidade
+        /// </summary>
+        /// <param name="novaEspecialidade"></param>
         // POST api/<EspecialidadeController>
         [HttpPost]
         [ProducesResponseType(typeof(EspecialidadeMedico), StatusCodes.Status200OK)]
@@ -68,7 +82,10 @@ namespace CL.WebApi.Controllers
             var especialidade = await especialidadeManager.InsertEspecialidadeAsync(novaEspecialidade);
             return CreatedAtAction(nameof(Get), new { Id = especialidade.Id},especialidade);
         }
-
+        /// <summary>
+        /// Remoção de uma especialidade
+        /// </summary>
+        /// <param name="id" example="1"></param>
         // DELETE api/<EspecialidadeController>/5
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(EspecialidadeView), StatusCodes.Status200OK)]
