@@ -55,7 +55,7 @@ namespace CL.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Clientes", (string)null);
                 });
 
             modelBuilder.Entity("CL.Core.Domain.Especialidade", b =>
@@ -70,7 +70,7 @@ namespace CL.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Especialidades");
+                    b.ToTable("Especialidades", (string)null);
                 });
 
             modelBuilder.Entity("CL.Core.Domain.Medico", b =>
@@ -89,7 +89,7 @@ namespace CL.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Medicos");
+                    b.ToTable("Medicos", (string)null);
                 });
 
             modelBuilder.Entity("EspecialidadeMedico", b =>
@@ -104,7 +104,7 @@ namespace CL.Data.Migrations
 
                     b.HasIndex("MedicosId");
 
-                    b.ToTable("EspecialidadeMedico");
+                    b.ToTable("EspecialidadeMedico", (string)null);
                 });
 
             modelBuilder.Entity("EspecialidadeMedico", b =>

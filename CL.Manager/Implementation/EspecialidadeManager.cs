@@ -20,7 +20,7 @@ public class EspecialidadeManager : IEspecialidadeManager
         return mapper.Map<EspecialidadeView>(await especialidadeRepository.DeleteEspecialidadeAsync(id));
     }
 
-    public async Task<EspecialidadeView> GetEspecialidade(int id)
+    public async Task<EspecialidadeView> GetEspecialidadeAsync(int id)
     {
         return mapper.Map<EspecialidadeView>(await especialidadeRepository.GetEspecialidadeAsync(id));
     }

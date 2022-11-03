@@ -33,6 +33,7 @@ public class EspecialidadeRepository : IEspecialidadeRepository
     {
         if (especialidade is null) return null;
         await context.Especialidades.AddAsync(especialidade);
+        await context.SaveChangesAsync();
         return especialidade;
     }
     public async Task<Especialidade> DeleteEspecialidadeAsync(int id)
@@ -40,6 +41,7 @@ public class EspecialidadeRepository : IEspecialidadeRepository
         var especialidade = await context.Especialidades.FirstOrDefaultAsync(e => e.Id == id);
         if (especialidade is null) return null;
         context.Especialidades.Remove(especialidade);
+        await context.SaveChangesAsync();
         return especialidade;
     }
 }
